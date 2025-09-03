@@ -1,0 +1,18 @@
+{
+  "name": "meckano-time-tracker-helper",
+  "version": "1.0.0",
+  "description": "Chrome extension to automate filling working hours on Meckano time tracking system",
+  "type": "module",
+  "scripts": {
+    "dev": "vite build --watch --mode development && node build.js",
+    "build": "vite build && node build.js",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "@types/chrome": "^0.0.254"
+  },
+  "keywords": ["chrome-extension", "automation", "timesheet", "meckano"],
+  "author": "Shlomi Amichay",
+  "license": "MIT"
+}
