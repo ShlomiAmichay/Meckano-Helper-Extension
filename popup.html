@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meckano Time Tracker Helper</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🕒 Meckano Helper</h1>
+            <p>Automate your time tracking</p>
+        </header>
+
+        <div class="form-section">
+            <div class="time-inputs">
+                <div class="input-group">
+                    <label for="startTime">Start Time:</label>
+                    <input type="time" id="startTime" value="09:00">
+                </div>
+                
+                <div class="input-group">
+                    <label for="endTime">End Time:</label>
+                    <input type="time" id="endTime" value="18:00">
+                </div>
+            </div>
+
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" id="humanizeInput">
+                    Humanize input (±20 min randomization)
+                </label>
+            </div>
+
+        </div>
+
+        <div class="actions">
+            <button id="fillBtn" class="btn primary">
+                ⚡ Fill Working Hours
+            </button>
+        </div>
+
+        <div id="status" class="status hidden">
+            <div class="status-content">
+                <span id="statusText">Ready</span>
+            </div>
+        </div>
+
+        <div class="footer">
+            <small>Make sure you're on the Meckano reports page</small>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
