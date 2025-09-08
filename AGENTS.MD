@@ -14,13 +14,31 @@ work environments.
 
 ## Architecture Overview
 
+### Modern Build System
+**Uses Vite for bundling** - source code is modular ES6, bundled to single files for Chrome extension compatibility.
+
 ### File Structure
 ```
-├── manifest.json          # Chrome extension configuration (Manifest v3)
-├── popup.html/css/js      # Extension popup interface
-├── content.js             # Main script that interacts with Meckano website
-├── icons/                 # Extension icons (16, 32, 48, 128px)
-└── README.md              # User documentation
+src/                        # Source code (modular development)
+├── content/               # Content script modules
+│   ├── content.js         # Main orchestrator
+│   ├── config.js/json     # Configuration system
+│   ├── logger.js          # Logging singleton with factory
+│   ├── utils.js           # Pure utility functions
+│   ├── dataProvider.js    # Abstract base class
+│   ├── constantDataProvider.js # Concrete implementation
+│   ├── dialogManager.js   # Dialog handling
+│   └── formManager.js     # Form filling logic
+├── popup/                 # Extension popup
+│   ├── popup.js/html/css  # Popup interface
+└── public/                # Static assets
+    ├── manifest.json      # Chrome extension config
+    └── icons/             # Extension icons
+
+dist/                      # Built extension (deploy this)
+├── content.js             # Bundled from src/content/*
+├── popup.js               # Bundled popup script
+└── manifest.json          # Copied from src/public/
 ```
 
 ### Key Components

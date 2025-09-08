@@ -4,6 +4,7 @@ import { config } from './config.js';
 import { sleep } from './utils.js';
 
 const logger = createLogger('DialogManager');
+const dialogConfig = config.get('dialogManager') || {};
 
 /**
  * Handles dialog opening and waiting for Meckano timesheet dialog
@@ -58,11 +59,13 @@ export class DialogManager {
 
     /**
      * Wait for dialog to be fully loaded and ready
-     * @param {number} maxRetries - Maximum number of retry attempts
-     * @param {number} delayMs - Delay between retry attempts
      * @returns {Promise<object>} Result object with success/error status
      */
-    async waitForDialog(maxRetries = 10, delayMs = 250) {
+    async waitForDialog() {
+        // Use config values with fallback defaults
+        const maxRetries = dialogConfig.waitForDialogMaxRetries;
+        const delayMs = dialogConfig.waitForDialogDelayTime;
+        
         logger.log(`Waiting for dialog to render (${maxRetries} retries, ${delayMs}ms delay)...`);
         
         for (let attempt = 1; attempt <= maxRetries; attempt++) {

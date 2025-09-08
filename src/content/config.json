@@ -12,5 +12,9 @@
     "ו": "Friday",
     "ש": "Saturday"
   },
-  "SKIP_PATTERNS": ["ו", "ש", "חג", "ערב חג"]
+  "SKIP_PATTERNS": ["ו", "ש", "חג", "ערב חג"],
+  "dialogManager": {
+    "waitForDialogMaxRetries": 20,
+    "waitForDialogDelayTime": 1500
+  }
 }

@@ -4,8 +4,8 @@
   "description": "Chrome extension to automate filling working hours on Meckano time tracking system",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch --mode development && node build.js",
-    "build": "vite build && node build.js",
+    "dev": "vite build --watch --mode development",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "devDependencies": {
