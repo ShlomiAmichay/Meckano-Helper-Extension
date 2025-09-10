@@ -1,0 +1,20 @@
+{
+  "DEBUG_MODE": true,
+  "LOG_PREFIX": "Meckano Helper",
+  "DEFAULT_RETRY_COUNT": 15,
+  "DEFAULT_DELAY_MS": 1000,
+  "HEBREW_DAYS": {
+    "א": "Sunday",
+    "ב": "Monday", 
+    "ג": "Tuesday",
+    "ד": "Wednesday",
+    "ה": "Thursday",
+    "ו": "Friday",
+    "ש": "Saturday"
+  },
+  "SKIP_PATTERNS": ["ו", "ש", "חג", "ערב חג"],
+  "dialogManager": {
+    "waitForDialogMaxRetries": 20,
+    "waitForDialogDelayTime": 1500
+  }
+}

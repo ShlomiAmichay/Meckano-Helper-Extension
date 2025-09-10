@@ -85,7 +85,9 @@ class MeckanoPopup {
 
 
     async fillHours() {
-        if (!await this.checkTabCompatibility()) return;
+        if (!await this.checkTabCompatibility()) {
+            return;
+        }
 
         const timeData = {
             startTime: this.startTimeInput.value,
