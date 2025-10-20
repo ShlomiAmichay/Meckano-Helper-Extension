@@ -120,7 +120,8 @@ export class FormManager {
     /**
      * Parse date information from a table row
      * @param {HTMLElement} row - Table row element
-     * @returns {object|null} Date information object or null if parsing fails
+     * @returns {object|null} Date information object with date, hebrewDay, specialText, missingEventValue, 
+     *                        and fullText properties, or null if parsing fails
      */
     parseDateRow(row) {
         try {
@@ -147,10 +148,21 @@ export class FormManager {
             const specialSpan = dateCell.querySelector('.specialDayDescription');
             const specialText = specialSpan ? specialSpan.textContent.trim() : '';
             
+            // Check for missing events dropdown (vacation/sickness)
+            const missingCell = row.querySelector('td.missing');
+            const missingSelect = missingCell ? missingCell.querySelector('select.select-box') : null;
+            const missingEventValue = missingSelect ? missingSelect.value : '0';
+            
+            // Debug log for missing event detection
+            if (missingEventValue !== '0') {
+                logger.log(`Detected missing event for ${dateString}: value=${missingEventValue}`);
+            }
+            
             return {
                 date: dateString,        // "25/08/2025"
                 hebrewDay: hebrewLetter, // "ב" 
                 specialText: specialText, // "חג" or "ערב חג" or ""
+                missingEventValue: missingEventValue, // "0", "30148", "30149", etc.
                 fullText: fullDateText   // "25/08/2025 ב"
             };
             
@@ -183,6 +195,14 @@ export class FormManager {
         // Skip holiday eves: "ערב חג" in special text
         if (dateInfo.specialText.includes('ערב חג')) {
             dateInfo.skipReason = 'Holiday Eve';
+            return true;
+        }
+        
+        // Skip days with missing events (vacation, sickness, etc.)
+        const skipRules = config.get('MISSING_EVENT_SKIP_RULES', {});
+        const skipReason = skipRules[dateInfo.missingEventValue];
+        if (skipReason) {
+            dateInfo.skipReason = skipReason;
             return true;
         }
         
