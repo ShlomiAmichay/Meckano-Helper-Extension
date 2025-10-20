@@ -73,7 +73,7 @@ class MeckanoPopup {
                 return false;
             }
 
-            this.showStatus('Ready to analyze page', 'info');
+            this.showStatus('Ready to fill hours', 'info');
             return true;
         } catch (error) {
             console.error('Failed to check tab compatibility:', error);

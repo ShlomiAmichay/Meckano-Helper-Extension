@@ -13,6 +13,10 @@
     "ש": "Saturday"
   },
   "SKIP_PATTERNS": ["ו", "ש", "חג", "ערב חג"],
+  "MISSING_EVENT_SKIP_RULES": {
+    "30148": "Vacation day",
+    "30149": "Sick day"
+  },
   "dialogManager": {
     "waitForDialogMaxRetries": 20,
     "waitForDialogDelayTime": 1500
